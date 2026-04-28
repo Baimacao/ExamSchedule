@@ -20,10 +20,61 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* 保证按钮和标题也为超粗 */
-        h1, h2, h3, .control-btn, button, .back-btn, .top-btn-group button {
-            font-weight: 900;
+        /* 确保页面主要组件（时钟、科目、计时、状态、表格文本、控制按钮等）均为超粗 */
+        #current-time,
+        #current-subject,
+        #exam-timing,
+        #remaining-time,
+        #status,
+        .clock-section,
+        .info-section,
+        .reminder-title,
+        .reminder-subtitle,
+        #exam-table-body,
+        #exam-table-body td,
+        #exam-table-body th,
+        table th,
+        table td,
+        .paper-count-container,
+        .paper-count-container label,
+        .paper-count-container input,
+        .paper-count-container .count-btn,
+        .count-btn,
+        .count-btn span,
+        .action-btn,
+        .control-btn,
+        button,
+        input,
+        select,
+        textarea {
+            font-weight: 900 !important;
         }
+
+        /* 确保图标符号也显得更粗（部分图标字体使用较大尺寸） */
+        .material-symbols-outlined,
+        .material-icons {
+            font-weight: 900; /* 尽量让符号字体表现为粗体（若可用） */
+        }
+
+        /* 对提醒覆盖层文本加大字号并加粗，提升可见性 */
+        .reminder-title {
+            font-size: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .reminder-subtitle {
+            font-size: 1rem;
+        }
+
+        /* 保留现有布局样式，避免冲突 */
+        .top-btn-group {
+            display: flex;
+            gap: 8px;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+
     </style>
 </head>
 <body>
