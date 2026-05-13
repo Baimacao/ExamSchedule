@@ -3,3 +3,5 @@
 **不只是考试看板。**
 
 ## 注意！ES项目并非由我开发，此仓库仅为学校考试信息静态挂载使用！
+
+https://baimacao.github.io/ExamSchedule/
