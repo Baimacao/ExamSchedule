@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 errorSystem.show('本地配置无效，已清除并切换至默认配置');
             }
         }
-        
+
         // 使用默认配置
         return fetch('exam_config.json', { cache: "no-store" })
             .then(response => response.json())
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const paperPages = document.getElementById('paper-pages');
                     const sheetCount = document.getElementById('sheet-count');
                     const sheetPages = document.getElementById('sheet-pages');
-                    
+
                     if (paperCount && paperPages && sheetCount && sheetPages) {
                         try {
                             const savedInfo = localStorage.getItem('paperInfo');
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 if (examTimingElem) {
-                    examTimingElem.textContent = `起止时间: ${formatTimeWithoutSeconds(new Date(currentExam.start).toLocaleTimeString('zh-CN', { hour12: false }))} - ${formatTimeWithoutSecond[...]`;
+                    examTimingElem.textContent = `起止时间: ${formatTimeWithoutSeconds(new Date(currentExam.start).toLocaleTimeString('zh-CN', { hour12: false }))} - ${formatTimeWithoutSeconds(new Date(currentExam.end).toLocaleTimeString('zh-CN', { hour12: false }))}`;
                 }
 
                 const remainingTime = (new Date(currentExam.end).getTime() - now.getTime() + 1000) / 1000;
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         updateDisplay(false);
                     }
 
-                    examTimingElem.textContent = `起止时间: ${formatTimeWithoutSeconds(new Date(nextExam.start).toLocaleTimeString('zh-CN', { hour12: false }))} - ${formatTimeWithoutSeconds(n[...]
+                    examTimingElem.textContent = `起止时间: ${formatTimeWithoutSeconds(new Date(nextExam.start).toLocaleTimeString('zh-CN', { hour12: false }))} - ${formatTimeWithoutSeconds(new Date(nextExam.end).toLocaleTimeString('zh-CN', { hour12: false }))}`;
                 } else {
                     if (currentSubjectElem) {
                         currentSubjectElem.textContent = "考试均已结束";
@@ -291,14 +291,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             examTableBodyElem.innerHTML = "";
-            
+
             // 预处理日期和时间段
             const dateGroups = {};
             data.examInfos.forEach(exam => {
                 const start = new Date(exam.start);
                 const hour = start.getHours();
                 const dateStr = `${start.getMonth() + 1}月${start.getDate()}日<br>${hour < 12 ? '上午' : (hour < 18 ? '下午' : '晚上')}`;
-                
+
                 if (!dateGroups[dateStr]) {
                     dateGroups[dateStr] = [];
                 }
@@ -367,13 +367,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const target = document.getElementById(btn.dataset.target);
             const action = btn.dataset.action;
             const currentValue = parseInt(target.value) || 0;
-            
+
             if (action === 'increase') {
                 target.value = currentValue + 1;
             } else if (action === 'decrease' && currentValue > 0) {
                 target.value = currentValue - 1;
             }
-            
+
             // 保存到localStorage
             updatePaperInfo();
         });
