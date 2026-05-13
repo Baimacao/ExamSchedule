@@ -116,6 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const examNameText = data.examName;
             const roomText = roomElem.textContent;
             examNameElem.innerHTML = `${examNameText} <span id="room">${roomText}</span>`;
+            // 将考试信息看板标题设置为超粗，保证从配置加载的标题也以超粗显示
+            examNameElem.style.fontWeight = '900';
             messageElem.textContent = data.message;
         } catch (e) {
             errorSystem.show('显示考试信息失败: ' + e.message);
@@ -185,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 if (examTimingElem) {
-                    examTimingElem.textContent = `起止时间: ${formatTimeWithoutSeconds(new Date(currentExam.start).toLocaleTimeString('zh-CN', { hour12: false }))} - ${formatTimeWithoutSeconds(new Date(currentExam.end).toLocaleTimeString('zh-CN', { hour12: false }))}`;
+                    examTimingElem.textContent = `起止时间: ${formatTimeWithoutSeconds(new Date(currentExam.start).toLocaleTimeString('zh-CN', { hour12: false }))} - ${formatTimeWithoutSecond[...]`;
                 }
 
                 const remainingTime = (new Date(currentExam.end).getTime() - now.getTime() + 1000) / 1000;
@@ -271,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         updateDisplay(false);
                     }
 
-                    examTimingElem.textContent = `起止时间: ${formatTimeWithoutSeconds(new Date(nextExam.start).toLocaleTimeString('zh-CN', { hour12: false }))} - ${formatTimeWithoutSeconds(new Date(nextExam.end).toLocaleTimeString('zh-CN', { hour12: false }))}`;
+                    examTimingElem.textContent = `起止时间: ${formatTimeWithoutSeconds(new Date(nextExam.start).toLocaleTimeString('zh-CN', { hour12: false }))} - ${formatTimeWithoutSeconds(n[...]
                 } else {
                     if (currentSubjectElem) {
                         currentSubjectElem.textContent = "考试均已结束";
