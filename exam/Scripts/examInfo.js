@@ -116,8 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const examNameText = data.examName;
             const roomText = roomElem.textContent;
             examNameElem.innerHTML = `${examNameText} <span id="room">${roomText}</span>`;
-            // 将考试信息看板标题设置为超粗，保证从配置加载的标题也以超粗显示
-            examNameElem.style.fontWeight = '900';
             messageElem.textContent = data.message;
         } catch (e) {
             errorSystem.show('显示考试信息失败: ' + e.message);
@@ -195,11 +193,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const remainingMinutes = Math.floor((remainingTime % 3600) / 60);
                 const remainingSeconds = Math.floor(remainingTime % 60);
                 let remainingTimeText = '';
-                    if (remainingHours > 0) {
-                        remainingTimeText = `${remainingHours}时 ${String(remainingMinutes).padStart(2, '0')}分 ${String(remainingSeconds).padStart(2, '0')}秒`;
-                    } else {
-                        remainingTimeText = `${String(remainingMinutes).padStart(2, '0')}分 ${String(remainingSeconds).padStart(2, '0')}秒`;
-                    }
+                if (remainingHours > 0) {
+                    remainingTimeText = `${remainingHours}时 ${String(remainingMinutes).padStart(2, '0')}分 ${String(remainingSeconds).padStart(2, '0')}秒`;
+                } else {
+                    remainingTimeText = `${String(remainingMinutes).padStart(2, '0')}分 ${String(remainingSeconds).padStart(2, '0')}秒`;
+                }
                 if (remainingHours === 0 && remainingMinutes <= 14) {
                     if (remainingTimeElem) {
                         remainingTimeElem.textContent = `剩余时间: ${remainingTimeText}`;
@@ -368,11 +366,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const action = btn.dataset.action;
             const currentValue = parseInt(target.value) || 0;
 
-            if (action === 'increase') {
+            if (action === 'increase' && currentValue < 16) {
                 target.value = currentValue + 1;
             } else if (action === 'decrease' && currentValue > 0) {
                 target.value = currentValue - 1;
             }
+
 
             // 保存到localStorage
             updatePaperInfo();
@@ -383,10 +382,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ['paper-count', 'paper-pages', 'sheet-count', 'sheet-pages'].forEach(id => {
         const input = document.getElementById(id);
         input.addEventListener('change', () => {
-            const value = parseInt(input.value) || 0;
-            input.value = Math.max(0, value); // 确保不小于0
+            let value = parseInt(input.value) || 0;
+            value = Math.min(16, Math.max(0, value)); // 限制在 0~16 之间
+            input.value = value;
             updatePaperInfo();
         });
+
     });
 
     function updatePaperInfo() {
