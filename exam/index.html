@@ -68,13 +68,14 @@
             font-size: 1rem;
         }
 
-        /* 保留现有布局样式，避免冲突 */
+        /* 顶部按钮组靠右上角；原本是 left: 8px，会与左上角的「返回」按钮重叠。 */
         .top-btn-group {
             display: flex;
             gap: 8px;
             position: absolute;
             top: 8px;
-            left: 8px;
+            left: auto;
+            right: 8px;
         }
 
     </style>
