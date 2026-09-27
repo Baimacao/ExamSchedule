@@ -7,7 +7,7 @@
 
 > 看板程序本身由 **ExamAware 开发团队**开发，本仓库只做静态托管与本地化调整。
 
-- 🌐 在线访问：<https://es.examaware.tech>
+- 🌐 在线访问：<[https://es.examaware.tech](https://baimacao.github.io/ExamSchedule/)>
 - 📦 下载中心：<https://baimacao.github.io/ExamSchedule/download/>
 - 🖥️ 客户端 ExamAware2：<https://github.com/ExamAware/ExamAware2/releases>
 
